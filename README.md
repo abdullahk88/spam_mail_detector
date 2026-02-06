@@ -43,6 +43,9 @@ WORKING SCREENSHOTS :-
 🔹 Model Evaluation Strategy
 ![Model Evaluation](screenshots/7.PNG)
 
+🔥 LIVE DEMO :-
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-ff006e?style=for-the-badge&logo=streamlit)](https://spammaildetector-w3etb3vxwrf3sucwy6jwxb.streamlit.app/)
+
 🧠 MODEL & NLP PIPELINE :-
 
 >> Text Preprocessing
