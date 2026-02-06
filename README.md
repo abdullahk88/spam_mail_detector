@@ -29,19 +29,19 @@ Support for real email files (.eml)
 
 WORKING SCREENSHOTS :-
 🔹 Title
-![Title](screenshots/1.png)
+![Title](screenshots/1.PNG)
 🔹 Text input Mode
-![Text input](screenshots/2.png)
+![Text input](screenshots/2.PNG)
 🔹 File upload Mode (.eml / .txt)
-![File upload](screenshots/3.png)
+![File upload](screenshots/3.PNG)
 🔹 Important Words (TF-IDF Distribution)
-![TF-IDF](screenshots/4.png)
+![TF-IDF](screenshots/4.PNG)
 🔹 TF-IDF Word Importance Distribution (bar-graph)
-![Bar-graph](screenshots/5.png)
+![Bar-graph](screenshots/5.PNG)
 🔹 TF-IDF Word Importance Distribution (statistics)
-![Statistics](screenshots/6.png)
+![Statistics](screenshots/6.PNG)
 🔹 Model Evaluation Strategy
-![Model Evaluation](screenshots/7.png)
+![Model Evaluation](screenshots/7.PNG)
 
 🧠 MODEL & NLP PIPELINE :-
 
