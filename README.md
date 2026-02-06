@@ -28,13 +28,20 @@ Support for real email files (.eml)
 >> ⚡ Fast & Lightweight
 
 WORKING SCREENSHOTS :-
-🔹 Home & Input Selection
-🔹 Text Input Mode
-🔹 Email Upload Mode (.eml / .txt)
-🔹 Prediction Result with Confidence
-🔹 Important Words (TF-IDF Explainability)
-🔹 TF-IDF Word Importance Distribution
+🔹 Title
+![Title](screenshots/1.png)
+🔹 Text input Mode
+![Text input](screenshots/2.png)
+🔹 File upload Mode (.eml / .txt)
+![File upload](screenshots/3.png)
+🔹 Important Words (TF-IDF Distribution)
+![TF-IDF](screenshots/4.png)
+🔹 TF-IDF Word Importance Distribution (bar-graph)
+![Bar-graph](screenshots/5.png)
+🔹 TF-IDF Word Importance Distribution (statistics)
+![Statistics](screenshots/6.png)
 🔹 Model Evaluation Strategy
+![Model Evaluation](screenshots/7.png)
 
 🧠 MODEL & NLP PIPELINE :-
 
