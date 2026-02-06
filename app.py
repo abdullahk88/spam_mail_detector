@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 import pandas as pd
 
-# --- NEW IMPORTS FOR .eml SUPPORT ---
+# --- IMPORTS FOR .eml SUPPORT ---
 from email import policy
 from email.parser import BytesParser
 
@@ -26,7 +26,6 @@ feature_names = vectorizer.get_feature_names_out()
 # ---------------- HELPER FUNCTION FOR .eml ----------------
 def extract_text_from_eml(uploaded_file):
     msg = BytesParser(policy=policy.default).parsebytes(uploaded_file.read())
-
     email_body = ""
 
     if msg.is_multipart():
@@ -38,50 +37,74 @@ def extract_text_from_eml(uploaded_file):
 
     return email_body
 
-# ---------------- SIDEBAR SETTINGS ----------------
-st.sidebar.title("⚙️ Settings")
-theme = st.sidebar.radio("Theme Mode", ["Light", "Dark"])
-
-# ---------------- THEME COLORS (CYAN BASED) ----------------
-if theme == "Dark":
-    bg = "#0b132b"
-    card = "#1c2541"
-    text = "#e0fbfc"
-    accent = "#5bc0be"
-else:
-    bg = "#e0fbfc"
-    card = "#ffffff"
-    text = "#0b132b"
-    accent = "#3a86ff"
-
-st.markdown(f"""
+# ---------------- MODERN CYAN THEME (WORKING) ----------------
+st.markdown("""
 <style>
-.main {{
-    background-color: {bg};
-    color: {text};
-}}
-.block-container {{
-    padding-top: 2rem;
-}}
-.card {{
-    background-color: {card};
-    padding: 20px;
-    border-radius: 12px;
-    border-left: 6px solid {accent};
-}}
-.word {{
-    background-color: {card};
-    padding: 8px 12px;
-    margin: 5px;
-    border-radius: 20px;
+
+/* === APP BACKGROUND === */
+[data-testid="stApp"] {
+    background: linear-gradient(135deg, #dff9fb, #c7ecee);
+    color: #0b132b;
+}
+
+/* === REMOVE HEADER BG === */
+[data-testid="stHeader"] {
+    background: rgba(0,0,0,0);
+}
+
+/* === GLOBAL TEXT === */
+html, body, [class*="css"] {
+    color: #0b132b;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* === CARDS === */
+.card {
+    background: #ffffff;
+    padding: 22px;
+    border-radius: 14px;
+    border-left: 6px solid #00b4d8;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* === WORD CHIPS === */
+.word {
+    background: #caf0f8;
+    color: #023e8a;
+    padding: 6px 14px;
+    margin: 6px 6px 0 0;
+    border-radius: 999px;
     display: inline-block;
-    border: 1px solid {accent};
-}}
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* === BUTTON === */
+button[kind="primary"] {
+    background: linear-gradient(135deg, #00b4d8, #0077b6);
+    color: white;
+    border-radius: 10px;
+    font-weight: 600;
+    border: none;
+}
+
+/* === PROGRESS BAR === */
+.stProgress > div > div {
+    background: linear-gradient(90deg, #00b4d8, #48cae4);
+}
+
+/* === FILE UPLOADER === */
+[data-testid="stFileUploader"] {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 10px;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
 # ---------------- TITLE ----------------
-st.title("📧 Spam Mail Detection System")
+st.title("📧 NLP-Driven Spam Messages Detection")
 st.write(
     "An **NLP + Machine Learning–based system** that detects spam messages "
     "with **high precision**, confidence metrics, and **explainable predictions**."
@@ -103,7 +126,6 @@ if input_mode == "✍️ Text Input":
         height=140,
         placeholder="Paste email or SMS content here..."
     )
-
 else:
     uploaded_file = st.file_uploader(
         "Upload email file",
@@ -115,7 +137,6 @@ else:
         if uploaded_file.size > 50 * 1024 * 1024:
             st.error("File size exceeds 50MB limit.")
         else:
-            # ---- HANDLE .eml vs .txt ----
             if uploaded_file.name.endswith(".eml"):
                 message = extract_text_from_eml(uploaded_file)
             else:
@@ -160,32 +181,34 @@ if st.button("🔍 Analyze Message", use_container_width=True):
 
         st.progress(int(spam_conf if prediction == 1 else ham_conf))
 
-        # ---------------- WORD CONTRIBUTION ----------------
-        st.subheader("🔍 Why was this classified this way?")
-        st.write("Top contributing words influencing the model decision:")
+        # ---------------- IMPORTANT WORDS (TF-IDF BASED) ----------------
+        st.subheader("🔍 Important Words in This Message")
+        st.write("Words with highest TF-IDF importance in the given message:")
 
-        scores = vec.toarray()[0] * model.feature_log_prob_[prediction]
-        top_idx = np.argsort(scores)[-10:][::-1]
+        vec_array = vec.toarray()[0]
+        top_indices = np.argsort(vec_array)[-10:][::-1]
 
-        for i in top_idx:
-            if vec.toarray()[0][i] > 0:
+        found = False
+        for idx in top_indices:
+            if vec_array[idx] > 0:
+                found = True
                 st.markdown(
-                    f"<span class='word'>{feature_names[i]}</span>",
+                    f"<span class='word'>{feature_names[idx]}</span>",
                     unsafe_allow_html=True
                 )
 
-        # ---------------- WORD DISTRIBUTION ----------------
-        st.subheader("📊 Word Contribution Distribution")
+        if not found:
+            st.info("No strong keywords detected in this message.")
 
+        # ---------------- WORD DISTRIBUTION ----------------
         word_df = pd.DataFrame({
-            "Word": [feature_names[i] for i in top_idx if vec.toarray()[0][i] > 0],
-            "Score": [scores[i] for i in top_idx if vec.toarray()[0][i] > 0]
+            "Word": [feature_names[i] for i in top_indices if vec_array[i] > 0],
+            "TF-IDF Score": [vec_array[i] for i in top_indices if vec_array[i] > 0]
         })
 
         if not word_df.empty:
+            st.subheader("📊 TF-IDF Word Importance Distribution")
             st.bar_chart(word_df.set_index("Word"))
-        else:
-            st.info("No strong contributing words detected.")
 
         # ---------------- METRICS INFO ----------------
         with st.expander("📈 Model Evaluation Strategy"):
@@ -204,5 +227,6 @@ if st.button("🔍 Analyze Message", use_container_width=True):
             )
 
 st.divider()
-st.caption("Built with Python, NLP (TF-IDF), Scikit-learn & Streamlit")
-st.caption("A spam mail detector project by -- Abdullah Khan")
+st.caption(
+    "Spam classification system with explainability | NLP | ML | Developed by Abdullah Khan"
+)
