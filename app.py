@@ -37,67 +37,205 @@ def extract_text_from_eml(uploaded_file):
 
     return email_body
 
-# ---------------- MODERN CYAN THEME (WORKING) ----------------
+# ---------------- NEON DARK CYBERPUNK THEME ----------------
 st.markdown("""
 <style>
 
-/* === APP BACKGROUND === */
-[data-testid="stApp"] {
-    background: linear-gradient(135deg, #dff9fb, #c7ecee);
-    color: #0b132b;
+/* ===== BACKGROUND (ULTRA DARK CYBERPUNK) ===== */
+[data-testid="stApp"]{
+  background:
+    radial-gradient(1500px 800px at 5% -20%, rgba(255,0,127,.22), transparent 50%),
+    radial-gradient(1200px 700px at 95% 5%, rgba(0,255,200,.22), transparent 50%),
+    radial-gradient(1000px 600px at 50% 120%, rgba(0,150,255,.15), transparent 60%),
+    linear-gradient(180deg, #000000 0%, #0a0015 20%, #0f001c 50%, #050010 100%);
+  color:#e0f3ff;
 }
 
-/* === REMOVE HEADER BG === */
-[data-testid="stHeader"] {
-    background: rgba(0,0,0,0);
+/* ===== HEADER ===== */
+[data-testid="stHeader"]{ 
+  background: transparent;
+  border-bottom: 1px solid rgba(0,255,200,.2);
 }
 
-/* === GLOBAL TEXT === */
-html, body, [class*="css"] {
-    color: #0b132b;
-    font-family: "Segoe UI", sans-serif;
+/* ===== GLOBAL TEXT ===== */
+html, body, [class*="css"]{
+  font-family: 'Courier New', 'JetBrains Mono', monospace;
+  color:#e0f3ff;
+  letter-spacing: 0.5px;
 }
 
-/* === CARDS === */
-.card {
-    background: #ffffff;
-    padding: 22px;
-    border-radius: 14px;
-    border-left: 6px solid #00b4d8;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+/* ===== TITLES (NEON GRADIENT - INTENSE) ===== */
+h1{
+  font-size: 3.5rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, #ff006e, #8338ec, #00d9ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 
+    0 0 10px rgba(255,0,110,.8),
+    0 0 20px rgba(131,56,236,.6),
+    0 0 40px rgba(0,217,255,.4);
+  filter: drop-shadow(0 0 20px rgba(255,0,110,.5));
+  letter-spacing: 2px;
 }
 
-/* === WORD CHIPS === */
-.word {
-    background: #caf0f8;
-    color: #023e8a;
-    padding: 6px 14px;
-    margin: 6px 6px 0 0;
-    border-radius: 999px;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 500;
+h2{ 
+  color: #00ffff;
+  text-shadow: 0 0 20px rgba(0,255,255,.6), 0 0 40px rgba(0,200,255,.3);
+  border-bottom: 2px solid rgba(0,255,255,.3);
+  padding-bottom: 10px;
 }
 
-/* === BUTTON === */
-button[kind="primary"] {
-    background: linear-gradient(135deg, #00b4d8, #0077b6);
-    color: white;
-    border-radius: 10px;
-    font-weight: 600;
-    border: none;
+h3{ 
+  color: #ff00ff;
+  text-shadow: 0 0 15px rgba(255,0,255,.5);
 }
 
-/* === PROGRESS BAR === */
-.stProgress > div > div {
-    background: linear-gradient(90deg, #00b4d8, #48cae4);
+/* ===== SUBTEXT & LABELS ===== */
+p, label, span{ 
+  color: #b0e0ff;
+  text-shadow: 0 0 10px rgba(0,255,255,.2);
 }
 
-/* === FILE UPLOADER === */
-[data-testid="stFileUploader"] {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 10px;
+/* ===== RADIO BUTTONS ===== */
+[role="radio"] {
+  accent-color: #00ffff;
+}
+
+/* ===== INPUTS (CYBERPUNK GLOW) ===== */
+textarea, input{
+  background: linear-gradient(135deg, #0a001a, #151030) !important;
+  color: #00ffff !important;
+  border-radius: 8px !important;
+  border: 2px solid #00ffff !important;
+  box-shadow: 
+    inset 0 0 20px rgba(0,255,255,.1),
+    0 0 20px rgba(0,255,255,.3),
+    inset 0 0 0 1px rgba(255,0,127,.2) !important;
+  font-family: 'Courier New', monospace !important;
+  transition: all 0.3s ease;
+}
+
+textarea:focus, input:focus{
+  border-color: #ff00ff !important;
+  box-shadow: 
+    inset 0 0 30px rgba(255,0,255,.2),
+    0 0 30px rgba(255,0,127,.5),
+    inset 0 0 0 1px rgba(255,0,127,.4) !important;
+}
+
+/* ===== FILE UPLOADER ===== */
+[data-testid="stFileUploader"]{
+  background: linear-gradient(145deg, #0a001a, #151030);
+  border: 2px dashed #00ffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 
+    0 0 40px rgba(0,255,255,.3),
+    inset 0 0 20px rgba(0,255,255,.1);
+}
+
+/* ===== PRIMARY BUTTON (NEON GLOW) ===== */
+button[kind="primary"]{
+  background: linear-gradient(135deg, #ff006e, #8338ec, #00d9ff);
+  color: #000000;
+  font-weight: 900;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  padding: 14px 32px;
+  border: none;
+  box-shadow:
+    0 0 25px rgba(255,0,110,.7),
+    0 0 50px rgba(131,56,236,.5),
+    0 0 75px rgba(0,217,255,.3);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+button[kind="primary"]:hover{
+  box-shadow:
+    0 0 35px rgba(255,0,110,.9),
+    0 0 70px rgba(131,56,236,.7),
+    0 0 100px rgba(0,217,255,.5);
+  transform: scale(1.05);
+}
+
+/* ===== RESULT CARD (CYBERPUNK GLASS) ===== */
+.card{
+  background: linear-gradient(145deg, rgba(10,0,26,.95), rgba(21,16,48,.95));
+  border-radius: 12px;
+  padding: 28px;
+  border: 2px solid;
+  border-image: linear-gradient(135deg, #ff006e, #00ffff) 1;
+  box-shadow:
+    0 0 50px rgba(0,255,255,.3),
+    0 0 100px rgba(255,0,110,.2),
+    inset 0 0 30px rgba(0,217,255,.1);
+  backdrop-filter: blur(10px);
+}
+
+/* ===== WORD CHIPS (NEON) ===== */
+.word{
+  background: linear-gradient(135deg, rgba(255,0,110,.25), rgba(131,56,236,.25));
+  color: #ff00ff;
+  padding: 10px 18px;
+  margin: 8px 8px 0 0;
+  border-radius: 20px;
+  border: 1.5px solid #ff00ff;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(255,0,127,.4);
+  text-shadow: 0 0 10px rgba(255,0,127,.6);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.word:hover{
+  box-shadow: 0 0 30px rgba(255,0,127,.6), 0 0 50px rgba(131,56,236,.4);
+  transform: translateY(-2px);
+}
+
+/* ===== PROGRESS BAR ===== */
+.stProgress > div > div > div {
+  background: linear-gradient(90deg, #ff006e, #8338ec, #00ffff) !important;
+  box-shadow: 0 0 20px rgba(0,255,255,.5), 0 0 40px rgba(255,0,110,.3);
+}
+
+/* ===== DIVIDER ===== */
+hr { 
+  border-color: rgba(0,255,255,.3);
+  box-shadow: 0 0 15px rgba(0,255,255,.2);
+}
+
+/* ===== EXPANDER ===== */
+[data-testid="stExpander"] {
+  border: 1px solid rgba(0,255,255,.2);
+}
+
+/* ===== INFO & ALERT BOXES ===== */
+.stAlert, .stInfo, .stWarning{
+  background: linear-gradient(135deg, rgba(0,217,255,.15), rgba(131,56,236,.1));
+  color: #00ffff;
+  border-left: 4px solid #00ffff;
+  border-radius: 8px;
+  box-shadow: 0 0 25px rgba(0,255,255,.2);
+  text-shadow: 0 0 10px rgba(0,255,255,.3);
+}
+
+.stError{
+  background: linear-gradient(135deg, rgba(255,0,110,.15), rgba(255,80,0,.1));
+  color: #ff006e;
+  border-left: 4px solid #ff006e;
+  border-radius: 8px;
+  box-shadow: 0 0 25px rgba(255,0,110,.2);
+  text-shadow: 0 0 10px rgba(255,0,110,.3);
+}
+
+/* ===== CAPTION ===== */
+.caption{
+  color: #6ba3ff;
+  text-shadow: 0 0 10px rgba(0,150,255,.3);
 }
 
 </style>
@@ -227,6 +365,5 @@ if st.button("🔍 Analyze Message", use_container_width=True):
             )
 
 st.divider()
-st.caption(
-    "Spam classification system with explainability | NLP | ML | Developed by Abdullah Khan"
+st.caption("Spam messages classification system with smart metrics evaluation | NLP | ML | Developed by Abdullah Khan"
 )
