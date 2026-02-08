@@ -4,7 +4,7 @@ A Cyberpunk-Themed, Explainable Spam Classification System.
 
 >> (SCROLL BELOW ⬇️ for LIVE DEMO of this project) 
 
-🚀 PROJECT OVERVIEW :-
+🚀 PROJECT OVERVIEW
 NLP-Driven Spam Messages Detection is a modern Natural Language Processing (NLP) + Machine Learning application designed to classify text-based messages as Spam or Not Spam with high precision.
 
 The project goes beyond basic accuracy by providing:
@@ -12,7 +12,7 @@ Confidence scores
 Detailed evaluation using TF-IDF word importance along with bar graph plotting
 Support for real email files (.eml)
 
-✨ KEY FEATURES :-
+✨ KEY FEATURES
 
 >> 🔍 Spam vs Genuine Classification
 >> 📊 Confidence Metrics (Probability-Based)
@@ -30,7 +30,10 @@ Support for real email files (.eml)
    High-contrast colored typography
 >> ⚡ Fast & Lightweight
 
-WORKING SCREENSHOTS :-
+🔥 LIVE DEMO
+[📧 Spam Mail Detector – Live Demo](https://spammaildetector-w3etb3vxwrf3sucwy6jwxb.streamlit.app/)
+
+PROJECT SNAPSHOTS
 🔹 Title
 ![Title](screenshots/1.PNG)
 🔹 Text input Mode
@@ -46,10 +49,7 @@ WORKING SCREENSHOTS :-
 🔹 Model Evaluation Strategy
 ![Model Evaluation](screenshots/7.PNG)
 
-🔥 LIVE DEMO :-
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-ff006e?style=for-the-badge&logo=streamlit)](https://spammaildetector-w3etb3vxwrf3sucwy6jwxb.streamlit.app/)
-
-🧠 MODEL & NLP PIPELINE :-
+🧠 MODEL & NLP PIPELINE
 
 >> Text Preprocessing
 >> Lowercasing
@@ -58,13 +58,13 @@ WORKING SCREENSHOTS :-
 >> Feature Extraction
 >> TF-IDF Vectorization
 
-MODEL :-
+MODEL
 >> Multinomial Naive Baye
 >> Saved Artifacts
 >> Trained model (.pkl)
 >> TF-IDF vectorizer (.pkl)
 
-📈 MODEL EVALUATION STRATEGY :-
+📈 MODEL EVALUATION STRATEGY
 
 Due to the imbalanced nature of spam datasets, the model is evaluated using multiple metrics instead of accuracy alone:
 >> Precision
@@ -74,7 +74,7 @@ Due to the imbalanced nature of spam datasets, the model is evaluated using mult
 
 🎯 The model is optimized for precision, minimizing false positives (important in real-world spam detection).
 
-🛠️ TECH STACK :-
+🛠️ TECH STACK
 
 Python
 Scikit-learn
@@ -83,7 +83,7 @@ Pandas
 Streamlit
 Email Parsing (email.policy, BytesParser)
 
-📌 THE FINAL MODEL ACHIEVED :-
+📌 THE FINAL MODEL ACHIEVED
 - Zero false positives
 - High precision for spam detection
 - Acceptable recall with safe trade-offs
